@@ -9,6 +9,7 @@ Makeitsnappy::Application.routes.draw do
   match '/register', to: 'users#new'
   match '/login',    to: 'sessions#new'
   match '/logout',   to: 'sessions#destroy', via: :delete
+  match '/your_questions', to: 'questions#your_questions'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

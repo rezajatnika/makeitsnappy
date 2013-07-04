@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
       message: 'Can only contain lowercase letters and numbers' })
 
   validates(:password, length: { in: 5..9 })
+
+  def your_questions(params)
+    questions.paginate(page: params[:page], order: 'created_at DESC', per_page: 5)
+  end
 end
