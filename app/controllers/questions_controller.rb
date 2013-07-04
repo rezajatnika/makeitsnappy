@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_filter :auth, only: [:create, :your_questions]
+  before_filter :auth, only: [:create, :your_questions, :edit, :update]
 
   def index
     @question = Question.new
@@ -23,5 +23,19 @@ class QuestionsController < ApplicationController
 
   def your_questions
     @questions = current_user.your_questions(params)
+  end
+
+  def edit
+    @question = current_user.questions.find(params[:id])
+  end
+
+  def update
+    @question = current_user.questions.find(params[:id])
+    if @question.update_attributes(params[:question])
+      flash[:success] = 'Your question has been updated!'
+      redirect_to @question
+    else
+      render 'edit'
+    end
   end
 end
