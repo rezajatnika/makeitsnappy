@@ -7,5 +7,15 @@
   <% else %>
     <p>Please login to ask or answer questions.</p>
   <% end %>
-
 </div> <!-- end ask -->
+
+<div id="questions">
+  <h2>Unsolved Questions</h2>
+
+  <% if @questions.any? %>
+    <ul><%= render @questions %></ul>
+    <%= will_paginate %>
+  <% else %>
+  <p>No questions have been asked.</p>
+  <% end %>
+</div> <!-- end questions -->
